@@ -228,7 +228,7 @@ class CalculatorApp(ft.Container):
                 result = round(self.format_number(math.log(value)), 10)
                 self.result.value = str(result)
             self.new_operand = True
-        # ==================================================================
+        # ================================================================
         self.update()
 
     def format_number(self, num):
