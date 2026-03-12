@@ -17,8 +17,9 @@ Flet을 활용해 구현한 멀티모드 계산기로,
 
 ### 2️⃣ Engineering Mode
 <p>
-  <img src="assets/공학용_계산기.png" width="500">
+  <img src="assets/공학용_계산기.png" width="800">
 </p>
+
 - 삼각함수: sin, cos, tan (DEG/RAD 지원)
 - 로그함수: log, ln
 - 지수함수: eˣ, xʸ
