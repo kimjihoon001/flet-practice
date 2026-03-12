@@ -61,4 +61,20 @@ print(result)  # 11
 - 함수 입력 시 **자동 괄호 생성** 및 **자동 곱셈 처리** 로직이 적용된다.
 - 사무용·공학용 계산기는 **독립 컴포넌트**로 구현되며 콜백 기반으로 전환된다. 
 
-## 🚀 Run
+## 🚀 How to Run
+
+1. 프로젝트를 클론합니다.
+
+git clone https://github.com/kimjihoon001/flet-practice.git
+cd flet-practice
+
+2. 가상환경을 생성하고 활성화합니다.
+python -m venv myvenv
+myvenv\Scripts\activate    #window
+
+3. 필요한 패키지를 설치합니다.
+pip install flet         #version 0.81.0 이상
+
+4. 프로그램을 실행합니다.
+flet run
+flet 기능으로 자동으로 폴더 내부에 있는 main.py를 찾아 실행한다. 
