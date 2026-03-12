@@ -497,6 +497,14 @@ class CalculatorApp(ft.Container):
             self.new_operand = True
 
         elif data == "x²":
+            if not self.expression:
+                self.update()
+                return
+
+            if self.expression[-1] in ("+", "-", "*", "/", "(", "."):
+                self.update()
+                return
+
             if self.expression:
                 # self.close_pending_function()
                 self.expression += "²"
