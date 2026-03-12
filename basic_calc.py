@@ -70,6 +70,10 @@ class CalculatorApp(ft.Container):
                 ),
                 ft.Row(
                     controls=[
+                        EngineeringChangeButton(   # 백스페이스 버튼 추가
+                            icon=ft.Icons.ARROW_BACK,
+                            on_click=self.backspace_clicked
+                        ),
                         EngineeringChangeButton(
                             icon=ft.Icons.AUTORENEW,
                             on_click=self.switch_callback
@@ -304,7 +308,23 @@ class CalculatorApp(ft.Container):
 
 
         self.update()
+    def backspace_clicked(self, e):
 
+        if not self.expression:
+            return
+
+        last = self.expression[-1]
+
+        self.expression = self.expression[:-1]
+        self.eval_expression = self.eval_expression[:-1]
+
+        if last == "(":
+            self.open_parens -= 1
+        elif last == ")":
+            self.open_parens += 1
+
+        self.result.value = self.expression if self.expression else "0"
+        self.update()
 
     def format_number(self, num):
         try:
