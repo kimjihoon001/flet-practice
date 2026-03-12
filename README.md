@@ -16,7 +16,7 @@ Flet을 활용해 구현한 멀티모드 계산기로,
 - 퍼센트(%) 기능 제공
 
 ### 2️⃣ Engineering Mode
-<p align="left">
+<p>
   <img src="assets/공학용_계산기.png" width="800">
 </p>
 
