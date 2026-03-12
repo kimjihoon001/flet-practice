@@ -1,4 +1,5 @@
-# Flet 기반 공학용·사무용 전환형 계산기 구현
+<h1 align="center">Flet 기반 공학용·사무용 전환형 계산기 구현</h1>
+
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10+-blue">
   <img alt="Flet" src="https://img.shields.io/badge/Flet-0.21+-orange">
