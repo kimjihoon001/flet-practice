@@ -248,8 +248,9 @@ class CalculatorApp(ft.Container):
                 self.current_input = str(calc_result)
                 self.new_operand = True
                 self.just_calculated = True
+                self.open_parens = 0   # 추가
                 #self.pending_function = None
-
+                
             except:
                 self.result.value = "Error"
                 self.expression = ""
@@ -257,6 +258,7 @@ class CalculatorApp(ft.Container):
                 self.current_input = "0"
                 self.just_calculated = False
                 #self.pending_function = None
+                self.open_parens = 0   # 추가
                 self.reset()
 
         # 수정 사칙연산
@@ -275,6 +277,7 @@ class CalculatorApp(ft.Container):
                 self.current_input = str(calc_result)
                 self.new_operand = True
                 self.just_calculated = True
+                self.open_parens = 0   # 추가
                 #self.pending_function = None
 
             except:
@@ -283,6 +286,7 @@ class CalculatorApp(ft.Container):
                 self.eval_expression = ""
                 self.current_input = "0"
                 self.just_calculated = False
+                self.open_parens = 0   # 추가
                 #self.pending_function = None
                 self.reset()
 
@@ -308,7 +312,6 @@ class CalculatorApp(ft.Container):
 
         self.update()
     def backspace_clicked(self, e):
-
         if not self.expression:
             return
 
@@ -318,7 +321,7 @@ class CalculatorApp(ft.Container):
         self.eval_expression = self.eval_expression[:-1]
 
         if last == "(":
-            self.open_parens -= 1
+            self.open_parens = max(0, self.open_parens - 1)
         elif last == ")":
             self.open_parens += 1
 
@@ -340,4 +343,3 @@ class CalculatorApp(ft.Container):
         self.operator = "+"
         self.operand1 = 0
         self.new_operand = True
-
