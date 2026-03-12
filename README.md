@@ -2,7 +2,7 @@
 
 <p align="center">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.10+-blue">
-  <img alt="Flet" src="https://img.shields.io/badge/Flet-0.21+-orange">
+  <img alt="Flet" src="https://img.shields.io/badge/Flet-0.81+-orange">
 </p>
 <p align= "center">
   <img src ="assets/사무용예시.gif" height =200> <img src ="assets/공학용예시.gif" height=200>
@@ -76,7 +76,7 @@ myvenv\Scripts\activate    #window
 ```
 3. 패키지 설치
 ```
-pip install flet         #version 0.81.0 이상
+pip install "flet>=0.81.0"
 ```
 4. 실행
 ```
