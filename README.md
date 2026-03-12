@@ -13,10 +13,11 @@
 <img src="assets/전환.gif" width="70%">
 
 </p>
+<p align="center">
 Python Flet을 활용해 구현한 공학용·사무용 전환형 GUI 계산기이다.<br>
 하나의 프로그램 내에서 사무용 계산기와 공학용 계산기를 자유롭게 전환할 수 있도록 설계되었으며,<br>
 직관적인 UI와 안정적인 수식 처리 로직을 기반으로 다양한 연산을 지원한다.  
-
+</p>
 ## 🔑 Features
 
 ### 1️⃣ Standard Mode
