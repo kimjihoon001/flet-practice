@@ -30,6 +30,8 @@ Flet을 활용해 구현한 멀티모드 계산기로,
 - 이전 결과 재사용(ANS 기능)
   
 ### 3️⃣ Additional Features
+<img src ="assets/사무용예시.gif" width="800">
+
 - 공학용/사무용 전환 기능
 - 자동 괄호 닫힘 처리
 - 백스페이스 및 전체 초기화(AC) 지원
