@@ -1,5 +1,8 @@
 # Flet 기반 공학용·사무용 전환형 계산기 구현
-
+<p align= "center">
+  <img src ="assets/사무용예시.gif"> <img src ="assets/공학용예시>
+</p>
+                                  
 ## 🚀 Introduction
 Flet 기반 공학용·사무용 전환형 계산기 구현은 Python의 Flet 프레임워크를 활용하여 GUI 환경에서 동작하는 계산기 애플리케이션이다.  
 하나의 프로그램 내에서 사무용 계산기와 공학용 계산기를 자유롭게 전환할 수 있도록 설계되었으며,   
