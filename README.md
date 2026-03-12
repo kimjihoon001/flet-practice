@@ -16,7 +16,10 @@ Flet을 활용해 구현한 멀티모드 계산기로,
 - 퍼센트(%) 기능 제공
 
 ### 2️⃣ Engineering Mode
-<img src="assets/공학용_계산기.png" width="800">
+<p align="left">
+  <img src="assets/공학용_계산기.png" width="800">
+</p>
+
 
 - 삼각함수: sin, cos, tan (DEG/RAD 지원)
 - 로그함수: log, ln
