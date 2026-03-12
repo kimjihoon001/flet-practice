@@ -64,22 +64,22 @@ print(result)  # 11
 
 ## 🚀 How to Run
 
-1. 프로젝트를 클론합니다.
+1. 저장소 클론
 ```
 git clone https://github.com/kimjihoon001/flet-practice.git
 cd flet-practice
 ```
-2. 가상환경을 생성하고 활성화합니다.
+2. 가상환경 생성 및 활성화
 ```
 python -m venv myvenv
 myvenv\Scripts\activate    #window
 ```
-3. 필요한 패키지를 설치합니다.
+3. 패키지 설치
 ```
 pip install flet         #version 0.81.0 이상
 ```
-4. 프로그램을 실행합니다.
+4. 실행
 ```
 flet run
 ```
-flet 기능으로 자동으로 폴더 내부에 있는 main.py를 찾아 실행한다. 
+> flet 기능으로 자동으로 폴더 내부에 있는 `main.py`를 찾아 실행한다. 
