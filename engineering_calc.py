@@ -30,12 +30,11 @@ class ExtraActionButton(CalcButton):
 # 버튼 정의 (모양 색)
 # 동글한 버튼
 @ft.control
-class EngineeringChangeButton(ft.Button):
+class EngineeringChangeButton(ft.IconButton):
+    icon_color: ft.Colors = ft.Colors.BLACK
     bgcolor: ft.Colors = ft.Colors.WHITE
-    color: ft.Colors = ft.Colors.BLACK
     width: int = 40
     height: int = 40
-    border_radius: int = 999
 
 
 # 공학용 계산 버튼
@@ -81,7 +80,7 @@ class CalculatorApp(ft.Container):
                 ft.Row(
                     controls=[
                         EngineeringChangeButton(   # 백스페이스 버튼 추가
-                            icon=ft.Icons.ARROW_BACK,
+                            icon=ft.Icons.BACKSPACE,
                             on_click=self.backspace_clicked
                         ),
                         EngineeringChangeButton(
