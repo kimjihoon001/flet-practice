@@ -80,6 +80,10 @@ class CalculatorApp(ft.Container):
                 ),
                 ft.Row(
                     controls=[
+                        EngineeringChangeButton(   # 백스페이스 버튼 추가
+                            icon=ft.Icons.ARROW_BACK,
+                            on_click=self.backspace_clicked
+                        ),
                         EngineeringChangeButton(
                             icon=ft.Icons.AUTORENEW, on_click=self.switch_callback
                         )  # 버튼 수정
@@ -307,11 +311,10 @@ class CalculatorApp(ft.Container):
         # 수정 사칙연산
         elif data in ("sin", "cos", "tan", "log", "ln"):
             if self.just_calculated:
-                self.expression = ""
-                self.eval_expression = ""
-                self.current_input = "0"
+                self.expression = self.result.value
+                self.eval_expression = self.result.value
                 self.just_calculated = False
-                self.open_parens = 0
+                self.current_input = self.result.value
 
             if self.expression and (
                 self.expression[-1].isdigit()
@@ -447,11 +450,10 @@ class CalculatorApp(ft.Container):
 
         elif data == "√":
             if self.just_calculated:
-                self.expression = ""
-                self.eval_expression = ""
-                self.current_input = "0"
+                self.expression = self.result.value
+                self.eval_expression = self.result.value
                 self.just_calculated = False
-                self.open_parens = 0
+                self.current_input = self.result.value
 
             if self.expression and (
                 self.expression[-1].isdigit()
@@ -471,11 +473,10 @@ class CalculatorApp(ft.Container):
 
         elif data == "eˣ":
             if self.just_calculated:
-                self.expression = ""
-                self.eval_expression = ""
-                self.current_input = "0"
+                self.expression = self.result.value
+                self.eval_expression = self.result.value
                 self.just_calculated = False
-                self.open_parens = 0
+                self.current_input = self.result.value
 
             # 숫자 뒤면 자동 곱하기
             if self.expression and (
@@ -504,11 +505,10 @@ class CalculatorApp(ft.Container):
 
         elif data == "xʸ":
             if self.just_calculated:
-                self.expression = ""
-                self.eval_expression = ""
-                self.current_input = "0"
+                self.expression = self.result.value
+                self.eval_expression = self.result.value
                 self.just_calculated = False
-                self.open_parens = 0
+                self.current_input = self.result.value
 
             # 숫자나 닫는 괄호 뒤면 바로 붙이기 가능
             if not self.expression:
@@ -523,11 +523,10 @@ class CalculatorApp(ft.Container):
 
         elif data == "1/x":
             if self.just_calculated:
-                self.expression = ""
-                self.eval_expression = ""
-                self.current_input = "0"
+                self.expression = self.result.value
+                self.eval_expression = self.result.value
                 self.just_calculated = False
-                self.open_parens = 0
+                self.current_input = self.result.value
 
             # 숫자, 닫는 괄호, 소수점 뒤에 오면 곱하기 추가
             if self.expression and (
@@ -640,7 +639,66 @@ class CalculatorApp(ft.Container):
             self.new_operand = False
 
         self.update()
+    def backspace_clicked(self, e):
+        if not self.expression:
+            return
 
+        # 함수 시작 토큰 통째로 삭제
+        if self.expression.endswith("sin(") and self.eval_expression.endswith("sin_fn("):
+            self.expression = self.expression[:-4]
+            self.eval_expression = self.eval_expression[:-7]
+            self.open_parens -= 1
+
+        elif self.expression.endswith("cos(") and self.eval_expression.endswith("cos_fn("):
+            self.expression = self.expression[:-4]
+            self.eval_expression = self.eval_expression[:-7]
+            self.open_parens -= 1
+
+        elif self.expression.endswith("tan(") and self.eval_expression.endswith("tan_fn("):
+            self.expression = self.expression[:-4]
+            self.eval_expression = self.eval_expression[:-7]
+            self.open_parens -= 1
+
+        elif self.expression.endswith("log(") and self.eval_expression.endswith("log("):
+            self.expression = self.expression[:-4]
+            self.eval_expression = self.eval_expression[:-4]
+            self.open_parens -= 1
+
+        elif self.expression.endswith("ln(") and self.eval_expression.endswith("ln("):
+            self.expression = self.expression[:-3]
+            self.eval_expression = self.eval_expression[:-3]
+            self.open_parens -= 1
+
+        elif self.expression.endswith("abs(") and self.eval_expression.endswith("abs("):
+            self.expression = self.expression[:-4]
+            self.eval_expression = self.eval_expression[:-4]
+            self.open_parens -= 1
+
+        elif self.expression.endswith("e^(") and self.eval_expression.endswith("exp("):
+            self.expression = self.expression[:-3]
+            self.eval_expression = self.eval_expression[:-4]
+            self.open_parens -= 1
+
+        elif self.expression.endswith("^(") and self.eval_expression.endswith("**("):
+            self.expression = self.expression[:-2]
+            self.eval_expression = self.eval_expression[:-3]
+            self.open_parens -= 1
+
+        else:
+            # 일반 한 글자 삭제
+            last_expr = self.expression[-1]
+            last_eval = self.eval_expression[-1] if self.eval_expression else ""
+
+            self.expression = self.expression[:-1]
+            self.eval_expression = self.eval_expression[:-1]
+
+            if last_expr == "(":
+                self.open_parens -= 1
+            elif last_expr == ")":
+                self.open_parens += 1
+
+        self.result.value = self.expression if self.expression else "0"
+        self.update()
     # 수정 사칙연산
     def calc_sin(self, x):
         if self.angle_mode == "DEG":
