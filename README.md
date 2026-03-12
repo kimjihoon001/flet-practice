@@ -7,7 +7,7 @@ Flet을 활용해 구현한 멀티모드 계산기로,
 ## 🔑 Features
 
 ### 1️⃣ Standard Mode
-<alt="image" assets/공학용_계산기.png>
+![공학용 계산기](assets/공학용_계산기.png)
 <br>
 - 기본 사칙연산(+ − × ÷) 및 소수점 연산 지원
 - 괄호 연산 지원
