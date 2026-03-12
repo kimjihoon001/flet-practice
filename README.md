@@ -7,9 +7,9 @@ Flet을 활용해 구현한 멀티모드 계산기로,
 ## 🔑 Features
 
 ### 1️⃣ Standard Mode
-<p align="center">
+<p>
   <img src="assets/사무용_계산기.png" width="500">
-</p>)
+</p>
 <br>
 - 기본 사칙연산(+ − × ÷) 및 소수점 연산 지원
 - 괄호 연산 지원
