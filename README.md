@@ -9,7 +9,7 @@
 </p>
                                   
 ## 🚀 Introduction
-<p align="center">
+<p>
 <img src="assets/전환.gif" width="70%">
 
 </p>
