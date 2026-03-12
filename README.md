@@ -1,6 +1,6 @@
 # Flet 기반 공학용·사무용 전환형 계산기 구현
 <p align= "center">
-  <img src ="assets/사무용예시.gif"> <img src ="assets/공학용예시>
+  <img src ="assets/사무용예시.gif"> <img src ="assets/공학용예시.gif">
 </p>
                                   
 ## 🚀 Introduction
