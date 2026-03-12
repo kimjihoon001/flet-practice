@@ -59,9 +59,8 @@ class CalculatorApp(ft.Container):
         self.eval_expression = ""     # 실제 eval 계산용 수식
         self.current_input = "0"      # 현재 입력 중인 숫자
         self.just_calculated = False  # = 직후 여부
-        # self.pending_function = None  # sin, cos, tan 대기 상태
-        self.open_parens = 0   # 열린 괄호 개수
-        
+        self.pending_function = None  # sin, cos, tan 대기 상태
+
         self.content = ft.Column(
             controls=[
                 ft.Row(
@@ -119,6 +118,12 @@ class CalculatorApp(ft.Container):
             ]
         )
 
+    # 수정 사칙연산
+    
+    def close_pending_function(self):
+        if self.pending_function is not None:
+            self.eval_expression += ")"
+            self.pending_function = None
 
     def button_clicked(self, e):
         data = e.control.content
@@ -134,8 +139,8 @@ class CalculatorApp(ft.Container):
             self.eval_expression = ""
             self.current_input = "0"
             self.just_calculated = False
-            # self.pending_function = None
-            self.open_parens = 0
+            self.pending_function = None
+
         # 수정 사칙연산
         elif data in ("1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "."):
             if self.just_calculated:
@@ -143,7 +148,7 @@ class CalculatorApp(ft.Container):
                 self.eval_expression = ""
                 self.current_input = "0"
                 self.just_calculated = False
-                # self.pending_function = None
+                self.pending_function = None
                 
             # π 뒤에 숫자 누르면 자동 곱하기
             if self.expression and self.expression[-1] == "π":
@@ -180,7 +185,7 @@ class CalculatorApp(ft.Container):
                 self.update()
                 return
 
-            # self.close_pending_function()
+            self.close_pending_function()
 
             if self.expression and self.expression[-1] in ("+", "-", "*", "/"):
                 self.expression = self.expression[:-1] + data
@@ -192,38 +197,6 @@ class CalculatorApp(ft.Container):
             self.current_input = "0"
             self.new_operand = True
             self.result.value = self.expression
-            
-        # 수정 사칙연산
-        elif data == "()":
-            if self.just_calculated:
-                self.expression = self.result.value
-                self.eval_expression = self.result.value
-                self.current_input = self.result.value
-                self.just_calculated = False
-
-            # 닫는 괄호를 넣을 수 있는 경우
-            if self.open_parens > 0 and self.expression and (
-                self.expression[-1].isdigit() or self.expression[-1] == ")" or self.expression[-1] == "."
-            ):
-                self.expression += ")"
-                self.eval_expression += ")"
-                self.open_parens -= 1
-                self.result.value = self.expression
-                self.new_operand = True
-
-            else:
-                # 숫자나 닫는 괄호 뒤에 여는 괄호가 오면 곱셈 처리
-                if self.expression and (
-                    self.expression[-1].isdigit() or self.expression[-1] == ")" or self.expression[-1] == "."
-                ):
-                    self.expression += "*"
-                    self.eval_expression += "*"
-
-                self.expression += "("
-                self.eval_expression += "("
-                self.open_parens += 1
-                self.result.value = self.expression
-                self.new_operand = True
 
         # 수정 사칙연산
         elif data == "=":
@@ -232,11 +205,11 @@ class CalculatorApp(ft.Container):
                     self.update()
                     return
 
-                eval_expr = self.eval_expression + (")" * self.open_parens)
+                self.close_pending_function()
 
       
 
-                calc_result = eval(eval_expr,  {})
+                calc_result = eval(self.eval_expression,  {})
                 calc_result = self.format_number(calc_result)
 
                 self.result.value = str(calc_result)
@@ -245,7 +218,7 @@ class CalculatorApp(ft.Container):
                 self.current_input = str(calc_result)
                 self.new_operand = True
                 self.just_calculated = True
-                #self.pending_function = None
+                self.pending_function = None
 
             except:
                 self.result.value = "Error"
@@ -253,15 +226,16 @@ class CalculatorApp(ft.Container):
                 self.eval_expression = ""
                 self.current_input = "0"
                 self.just_calculated = False
-                #self.pending_function = None
+                self.pending_function = None
                 self.reset()
 
         # 수정 사칙연산
         elif data == "%":
             try:
                 if self.eval_expression:
-                    eval_expr = self.eval_expression + (")" * self.open_parens)
-                    calc_result = eval(eval_expr, {}) / 100
+                    self.close_pending_function()
+                    
+                    calc_result = eval(self.eval_expression, {}) / 100
                 else:
                     calc_result = float(self.current_input) / 100
 
@@ -272,7 +246,7 @@ class CalculatorApp(ft.Container):
                 self.current_input = str(calc_result)
                 self.new_operand = True
                 self.just_calculated = True
-                #self.pending_function = None
+                self.pending_function = None
 
             except:
                 self.result.value = "Error"
@@ -280,7 +254,7 @@ class CalculatorApp(ft.Container):
                 self.eval_expression = ""
                 self.current_input = "0"
                 self.just_calculated = False
-                #self.pending_function = None
+                self.pending_function = None
                 self.reset()
 
         # 수정 사칙연산
